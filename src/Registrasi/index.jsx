@@ -1,9 +1,8 @@
 import React from 'react';
-import List from './pembahasan/List';
-import Registrasi from '../Form/pembahasan/Registrasi';
+import Registrasi from './registrasi';
 
 
-export default class RegistrasiForm extends React.Component {
+export default class Form extends React.Component {
     render() {
         return (
             <div>
