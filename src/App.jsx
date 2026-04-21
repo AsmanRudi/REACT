@@ -1,19 +1,14 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Registrasi from './registrasi/pembahasan/registrasi'
+import Hooks from "./Hooks";
 
 
 
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
      
         <div className="App">
-            <Registrasi />
+            <Hooks />
         </div>
     
   )

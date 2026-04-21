@@ -11,19 +11,35 @@ const ShowError = ({errors}) => {
         )
     }
 
-export default class Registrasi extends React.Component {
+ class Registrasi extends React.Component {
     state = {
         nama: '',
         jurusan: '',
         gender: '',
         alamat: '',
-        member: false
+        member: false,
+        email: '',
+        password: '',
+        errors: []
+           
     }
-    handleSubmit = (e) =>{
-        e.preventDefault();
+    handleSubmit = event =>{
+        event.preventDefault();
+        
+        const {nama, jurusan, gender, alamat, member, email, password} = this.state;
         let messages = [];
-        const email = this.state.email;
-        const password = this.state.password;
+        if(nama.length === 0) {
+            messages = [...messages, 'Nama  harus diisi'];
+        }
+        if(jurusan.length === 0) {
+            messages = [...messages, 'Jurusan  harus diisi'];
+        }
+        if(gender.length === 0) {
+            messages = [...messages, 'Jenis Kelamin  harus diisi'];
+        }
+        if(alamat.length === 0) {
+            messages = [...messages, 'Alamat  harus diisi'];
+        }
 
         if(email.length === 0) {
             messages = [...messages, 'Email  harus diisi'];
@@ -43,45 +59,52 @@ export default class Registrasi extends React.Component {
             messages = [...messages, 'Password anda terlalu pendek'];
         }else {
             alert(
-            `Nama : ${this.state.email}
-            Jurusan : ${this.state.password} 
-           
+            `
+            <h4>Selamat Data Anda Sudah Registrasi</h4>
+            Nama : ${this.state.nama}
+            Jurusan : ${this.state.jurusan}
+            Jenis Kelamin : ${this.state.gender}
+            Alamat : ${this.state.alamat}
+            Member : ${this.state.member ? 'Ya' : 'Tidak'}    
+            Email : ${this.state.email}
+            Password : ${this.state.password} 
+
             ` );
             this.setState({
                 errors: [],
             })
         }
-
         if(messages.length > 0) {
-            this.setState({errors: messages}); 
-        }else {
-            this.setState({
-                nama: '',
-                jurusan: '',
-                gender: '',
-                alamat: '',
-                member: false,
-                email: '',
-                password: ''
-            })
-        }
+        this.setState({errors: messages}); 
+        
+    }
+        
     }
     render(){
+        const style = {
+            width: '400px',
+            margin: '100px auto',
+            border: '1px solid black ',
+            padding: '20px',
+        }
         return(
-            <div style={{margin: '100px auto', border: '1px solid gray', padding: '20px', width: '400px'}}>
+            <div style={style}>
+                
                 <form onSubmit={this.handleSubmit}>
-                    <h3>Form Registrasi</h3>
+                    {
+                    this.state.errors.length && <ShowError errors={this.state.errors} />
+                }
+                    <h3>Form Registrasi Member</h3>
             <label>
                 Nama : <input type="text" name="nama" 
-                onChange={ value => this.setState({nama: value})} 
-                value={this.state.nama}
+                onChange={e => this.setState({nama: e.target.value})} 
                 />
             </label>
             <br />
             <br />
             <label >
                 Jurusan : <select name="jurusan"
-                onChange={ value => this.setState({jurusan: value})}
+                onChange={ e => this.setState({jurusan: e.target.value})}
                 >
 
                 <option value="">Pilih Jurusan </option>
@@ -95,36 +118,40 @@ export default class Registrasi extends React.Component {
             <label>
                 Jenis Kelamin :
                 <input type="radio"  value="Laki-Laki" name="gender"
-                onChange={ value => this.setState({gender: value})} />
+                onChange={ e => this.setState({gender: e.target.value})} />
                 Laki-Laki
                 <input type="radio" value="Perempuan" name="gender"
-                onChange={ value => this.setState({gender: value})}
+                onChange={ e => this.setState({gender: e.target.value})}
                 /> Perempuan
             </label>
             <br />
             <br />
             <label>
-                Alamat : <textarea cols="30" rows="10" name="alamat"
-                onChange={ value => this.setState({alamat: value})}
-                value={this.state.alamat}
+                Alamat : <textarea type="text" cols="30" rows="10" name="alamat"
+                onChange={ e => this.setState({alamat: e.target.value})}
+               
                 />
             </label>
             <br />
+            <br />
             <label>
                 Member : <input type="checkbox" checked={this.state.member} name="member"
-                onChange={ checked => this.setState({member: checked})}
+                onChange={ e => this.setState({member: e.target.checked})}
                 />
             </label>
             <br /><br /> 
             <label>
                 Email : <input type="email" name="email" 
-                onChange={ value => this.setState({email: value})} 
-                value={this.state.email}
+                onChange={ e => this.setState({email: e.target.value})} 
+     
                 />
             </label>
+            <br />
+            <br />
             <label>
-                Password : <input type="password" name="password"                 onChange={ value => this.setState({password: value})} 
-                value={this.state.password}
+                Password : <input type="password" name="password"          
+                       onChange={ e => this.setState({password: e.target.value})} 
+
                 />
             </label>
             <br />
@@ -137,3 +164,4 @@ export default class Registrasi extends React.Component {
         )
     }
 }
+export default Registrasi;
