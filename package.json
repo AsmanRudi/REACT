@@ -12,6 +12,10 @@
   "dependencies": {
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^6.30.3",
+    "redux": "^5.0.1",
+    "redux-thunk": "^3.1.0",
     "Validator": "^1.1.4",
     "validatorjs": "^3.22.1"
   },

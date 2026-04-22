@@ -1,4 +1,4 @@
-import Hooks from "./Hooks";
+import Redux from "./Redux";
 
 
 
@@ -8,10 +8,10 @@ function App() {
   return (
      
         <div className="App">
-            <Hooks />
+            <Redux />
         </div>
     
-  )
+  );
 }
 
 export default App
